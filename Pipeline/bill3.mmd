@@ -1,0 +1,183 @@
+---
+config:
+  layout: elk
+---
+flowchart TD
+ subgraph subGraph0["Bill.line_items (array)"]
+    direction TB
+        L0["#0 • code: 85025 • code_system: CPT • desc: CBC W/DIFF"]
+        L0_a["18.25"]
+        L0_p["1.85"]
+        L0_d["0.00"]
+        L0_c["16.41"]
+        L0_cp["0.00"]
+        L1["#1 • code: 80053 • code_system: CPT • desc: CMP"]
+        L1_a["15.21"]
+        L1_p["0.22"]
+        L1_d["0.00"]
+        L1_c["14.99"]
+        L1_cp["0.00"]
+        L2["#2 • code: 82607 • code_system: CPT • desc: VITAMIN BH"]
+        L2_a["20.10"]
+        L2_p["2.34"]
+        L2_d["0.00"]
+        L2_c["17.76"]
+        L2_cp["0.00"]
+        L3["#3 • code: 36415 • code_system: CPT • desc: BLOOD DRAWING"]
+        L3_a["18.32"]
+        L3_p["5.62"]
+        L3_d["0.00"]
+        L3_c["12.70"]
+        L3_cp["0.00"]
+        L4["#4 • code: 82728 • code_system: CPT • desc: FERRITIN"]
+        L4_a["15.64"]
+        L4_p["2.44"]
+        L4_d["0.00"]
+        L4_c["13.20"]
+        L4_cp["0.00"]
+        L5["#5 • code: 83550 • code_system: CPT • desc: IRON BIND CAPACITY"]
+        L5_a["16.41"]
+        L5_p["5.94"]
+        L5_d["0.00"]
+        L5_c["10.46"]
+        L5_cp["0.00"]
+        L6["#6 • code: 83540 • code_system: CPT • desc: IRON"]
+        L6_a["15.96"]
+        L6_p["2.93"]
+        L6_d["0.00"]
+        L6_c["13.03"]
+        L6_cp["0.00"]
+        L7["#7 • code: 80061 • code_system: CPT • desc: LIPID PANEL"]
+        L7_a["18.31"]
+        L7_p["0.81"]
+        L7_d["0.00"]
+        L7_c["17.50"]
+        L7_cp["0.00"]
+        L8["#8 • code: 83036 • code_system: CPT • desc: HGB; GLYCATED"]
+        L8_a["9.29"]
+        L8_p["10.04"]
+        L8_d["0.00"]
+        L8_c["-0.75"]
+        L8_cp["0.00"]
+        L9["#9 • code: 86803 • code_system: CPT • desc: HEPATITIS C AB"]
+        L9_a["8.04"]
+        L9_p["3.36"]
+        L9_d["0.00"]
+        L9_c["4.68"]
+        L9_cp["0.00"]
+        L10["#10 • code: Additional • code_system: UNKNOWN • desc: Additional billing codes"]
+        L10_a["20.57"]
+        L10_p["2.84"]
+        L10_d["0.00"]
+        L10_c["17.73"]
+        L10_cp["0.00"]
+  end
+    B[/"Bill"/] -- statement_type --> B_st["statement_type: ESTIMATE"]
+    B -- currency --> B_ccy["currency: USD"]
+    B -- totals --> B_totals[/"Totals"/]
+    B_totals -- health_plan_allowed_amount --> B_t1["184.69"]
+    B_totals -- estimated_amount_paid_by_health_plan --> B_t2["41.04"]
+    B_totals -- patient_out_of_pocket --> B_t3["143.64"]
+    B_totals -- amount_due --> B_t4["143.64"]
+    B -- has --> P[/"Patient"/]
+    P -- full_name --> P_name["Jon Peck"]
+    P -- dob --> P_dob["1991-02-14"]
+    P -- gender --> P_gender["Male"]
+    P -- address --> P_addr["9502 Claymont Ct, Louisville, KY 40241"]
+    P -- responsible_party --> P_resp["Jon Peck"]
+    P -- telecom --> P_tel[/"telecom"/]
+    P_tel -- phone --> P_phone["UNKNOWN"]
+    P_tel -- email --> P_email["UNKNOWN"]
+    P -- identifiers --> P_ids[/"identifiers[ ]"/]
+    P_ids --> P_id0["Identifier #0"]
+    P_id0 -- system --> P_id0_sys["MRN"]
+    P_id0 -- value --> P_id0_val["UNKNOWN"]
+    B -- uses coverage --> COV[/"Coverage"/]
+    COV -- payer_name --> COV_pn["HealthGuard Assurance"]
+    COV -- payer_code --> COV_pc["SPHSC"]
+    COV -- subscriber_id --> COV_sid["JJAYG3MVQW99"]
+    COV -- group_number --> COV_grp["UNKNOWN"]
+    COV -- plan_name --> COV_plan["UNKNOWN"]
+    COV -- eligibility_status --> COV_elig["Eligible"]
+    COV -- eligibility_date --> COV_eldt["2023-06-15"]
+    COV -- deductible_remaining --> COV_dedr["No"]
+    COV -- coinsurance_percent --> COV_coins["15%"]
+    COV -- copay_amount --> COV_copay["UNKNOWN"]
+    COV -- out_of_pocket_remaining --> COV_oop["Yes"]
+    B -- billed to --> PAY[/"Payer"/]
+    COV -- insurer is --> PAY
+    P -. member/subscriber .-> COV
+    PAY -- name --> PAY_name["HealthGuard Assurance"]
+    PAY -- identifier --> PAY_id["UNKNOWN"]
+    PAY -- address --> PAY_addr["UNKNOWN"]
+    PAY -- telecom --> PAY_tel[/"telecom"/]
+    PAY_tel -- phone --> PAY_tel_phone["UNKNOWN"]
+    B -- from provider --> PROV[/"Provider"/]
+    PROV -- practice_name --> PR_name["Horizon Medical Clinic"]
+    PROV -- physician_name --> PR_doc["Bernard Hudson"]
+    PROV -- billing_account_number --> PR_acct["938460822"]
+    PROV -- npi --> PR_npi["UNKNOWN"]
+    PROV -- address --> PR_addr["UNKNOWN"]
+    PROV -- telecom --> PR_tel[/"telecom"/]
+    PR_tel -- phone --> PR_phone["UNKNOWN"]
+    PROV -. bills .-> PAY
+    B -- includes --> SVC[/"Service"/]
+    SVC -- date_of_service --> SVC_dos["2023-06-15"]
+    SVC -- place_of_service --> SVC_pos["UNKNOWN"]
+    L0 -- allowed_amount --> L0_a
+    L0 -- estimated_plan_paid --> L0_p
+    L0 -- deductible --> L0_d
+    L0 -- coinsurance --> L0_c
+    L0 -- copay --> L0_cp
+    L1 -- allowed_amount --> L1_a
+    L1 -- estimated_plan_paid --> L1_p
+    L1 -- deductible --> L1_d
+    L1 -- coinsurance --> L1_c
+    L1 -- copay --> L1_cp
+    L2 -- allowed_amount --> L2_a
+    L2 -- estimated_plan_paid --> L2_p
+    L2 -- deductible --> L2_d
+    L2 -- coinsurance --> L2_c
+    L2 -- copay --> L2_cp
+    L3 -- allowed_amount --> L3_a
+    L3 -- estimated_plan_paid --> L3_p
+    L3 -- deductible --> L3_d
+    L3 -- coinsurance --> L3_c
+    L3 -- copay --> L3_cp
+    L4 -- allowed_amount --> L4_a
+    L4 -- estimated_plan_paid --> L4_p
+    L4 -- deductible --> L4_d
+    L4 -- coinsurance --> L4_c
+    L4 -- copay --> L4_cp
+    L5 -- allowed_amount --> L5_a
+    L5 -- estimated_plan_paid --> L5_p
+    L5 -- deductible --> L5_d
+    L5 -- coinsurance --> L5_c
+    L5 -- copay --> L5_cp
+    L6 -- allowed_amount --> L6_a
+    L6 -- estimated_plan_paid --> L6_p
+    L6 -- deductible --> L6_d
+    L6 -- coinsurance --> L6_c
+    L6 -- copay --> L6_cp
+    L7 -- allowed_amount --> L7_a
+    L7 -- estimated_plan_paid --> L7_p
+    L7 -- deductible --> L7_d
+    L7 -- coinsurance --> L7_c
+    L7 -- copay --> L7_cp
+    L8 -- allowed_amount --> L8_a
+    L8 -- estimated_plan_paid --> L8_p
+    L8 -- deductible --> L8_d
+    L8 -- coinsurance --> L8_c
+    L8 -- copay --> L8_cp
+    L9 -- allowed_amount --> L9_a
+    L9 -- estimated_plan_paid --> L9_p
+    L9 -- deductible --> L9_d
+    L9 -- coinsurance --> L9_c
+    L9 -- copay --> L9_cp
+    L10 -- allowed_amount --> L10_a
+    L10 -- estimated_plan_paid --> L10_p
+    L10 -- deductible --> L10_d
+    L10 -- coinsurance --> L10_c
+    L10 -- copay --> L10_cp
+    B -- has line item --> L0 & L1 & L2 & L3 & L4 & L5 & L6 & L7 & L8 & L9 & L10
+    SVC -- orders/tests include --> L0 & L1 & L2 & L3 & L4 & L5 & L6 & L7 & L8 & L9 & L10
