@@ -1,0 +1,102 @@
+graph TD
+
+%% Bill Info
+Bill["Bill 2"]
+Date["11/29/2023"]
+
+Bill -- "is" --> Date
+Bill -- "has" --> Patient
+
+%% Patient Info & Guarantor Info
+Patient["Isaiah Duke"]
+Guarantor["Guadalupe Pruitt"]
+Guarantor_Location["621 Sunrise Dr, Cheyenne, WI 82009"]
+Guarantorr_Phone["492999751"]
+
+Guarantor -- "location/phone" --> Guarantor_Location
+Guarantor -- "has" --> Guarantorr_Phone
+Guarantor -- "Relationship" --> Patient
+Patient -- "Patient Guarantor" --> Guarantor
+Patient -- "owns" --> Total
+Patient --"received" --> Service
+
+%% Financial
+Total["$1,994.90"]
+MinimumDue["Minimun Amount Due"]
+Mini_Amount["$664.97"]
+Deadline["deadline"]
+Deadline_Date["02/29/2024"]
+
+Total -- "has" --> Deadline
+Deadline -- "is" --> Deadline_Date
+Deadline -- "includes" --> MinimumDue
+MinimumDue -- "is" --> Mini_Amount
+MinimumDue -- "includes" --> Deadline
+
+%% Payment Methods 
+PaymentMethods["payment methods"]
+Total -- "has" --> PaymentMethods
+
+PaymentMethods -- "includes" --> PayByMail["Pay by mail"]
+PaymentMethods -- "includes" --> Website["www.silverbirch.com"]
+PaymentMethods -- "includes" --> QR["QR code with smartphone"]
+
+%% Hospital
+Hospital["Silver Birch Community Hospital"]
+Hospital_Location["Clarksville, Tennessee-37092"]
+PO["PO BOX 4048"]
+Dept["Dept #LINAN"]
+RevenueOffice["Revenue Roots Billing Office"]
+Account["Account Number"]
+Account_Number["439299751"]
+RevenueOffice_Add["1980 Timber Ln, Fargo, ND 58104"]
+
+Hospital --"describes" --> PO
+Hospital --"describes" --> Dept
+Hospital -- "location/phone" --> Hospital_Location
+Hospital --"has" --> RevenueOffice
+Hospital -- "has" --> Account
+Hospital --"Performed" --> Service
+
+RevenueOffice -- "location/phone" --> RevenueOffice_Add
+Account -- "is" --> Account_Number
+
+%% Service
+Service["service"]
+
+Service -- "costs" --> Total
+Service -- "has" --> PaymentOptions
+Service -- "has" --> HelpOptions
+
+PaymentOptions["payment options"]
+PayMonthly["Pay Monthly $664.97"]
+PayFull["Pay In Full $1,994.90"]
+ThreePayments["3 Payments"]
+MonthlyFee["$4.95 monthly service fee per installment"]
+
+HelpOptions["help options"]
+FinancialAssist["Financial Assistance"]
+CustomerService["Customer service"]
+WebsiteHelp["www.silverbirch.com"]
+FinPhone["860-483-9278"]
+FinWebsite["www.silverbirchfinance.com"]
+CustPhone["216-743-5068"]
+Hours["8:00AM - 5:00PM PT"]
+Days["Monday thru Friday"]
+
+PaymentOptions -- "includes" --> PayMonthly
+PaymentOptions -- "includes" --> PayFull
+
+PayMonthly -- "includes" --> ThreePayments
+ThreePayments -- "includes" --> MonthlyFee
+
+HelpOptions -- "includes" --> FinancialAssist
+HelpOptions -- "includes" --> CustomerService
+HelpOptions -- "includes" --> WebsiteHelp
+
+FinancialAssist -- "includes" --> FinPhone
+FinancialAssist -- "includes" --> FinWebsite
+
+CustomerService -- "includes" --> CustPhone["216-743-5068"]
+CustPhone -- "by" --> Hours
+CustPhone -- "by" --> Days

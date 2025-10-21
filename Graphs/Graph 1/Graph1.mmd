@@ -1,0 +1,38 @@
+graph TD
+
+%% Bill Information
+Bill["Bill 1"]
+Date["06/23/2024"]
+
+Bill -- "is" --> Date
+Bill -- "has" --> Patient
+
+%% Patient /Care Relationships/ Doctor Info
+Patient["Joseph Marts"]
+Credit["Josie Dowons"]
+Doctor["Tanisha Coffey"]
+Pateint_Location_Phone["8156 Forest Hill Rd, Kansas City, KS 66109"]
+Doctor_Location["8043 Lakeside Cir, Orlando, FL 32810"]
+Doctor_Phone["425-660-3802"]
+
+Patient -- "location/phone" --> Pateint_Location_Phone
+Doctor -- "location/phone" --> Doctor_Location
+Doctor-- "location/phone" --> Doctor_Phone
+
+Patient -- "Credit Patient" --> Credit
+Credit -- "Relationship" --> Patient
+Patient -- "Doctor Relationship" --> Doctor
+Patient -- "owes" --> Total
+
+%% Financials
+Total["$1,569.58"]
+Services["Services"]
+Insurance["insurance"]
+Not_paid["past due"]
+
+
+Total -- "is" --> Not_paid
+Services -- "costs" --> Total
+Services -- "received" --> Patient
+Doctor -- "performed" --> Services
+Insurance -- "paid" --> Total

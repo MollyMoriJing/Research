@@ -1,0 +1,92 @@
+---
+config:
+  layout: elk
+---
+flowchart TD
+    Bill["Bill 3"] -- is --> Date["04/11/1991"]
+    Bill -- has --> Patient["Jon Peck"]
+    Patient -- describes --> DOB["DOB"] & Gender["Male"]
+    DOB -- is --> Date
+    Patient -- location/phone --> Address["1591 Claywood Ct, Sunnyvale, CA 94089"]
+    Patient -- recieved --> services["services"]
+    Clinic["Horizon Medical Clinic"] -- performed --> services
+    Clinic -- has --> Account["Account Number"] & Tests["Tests Ordered"]
+    Account -- is --> AccountValue["938460822"]
+    Patient -- "Patient-Doctor Relationship" --> Doctor["Bernard Hudson"]
+    Doctor -- affiliated with? --> Clinic
+    Doctor -- owns --> OFP_Amount["$143.64"]
+    Tests -- is --> test1["005009"] & test2["322000"] & test3["001508"] & test4["998085"] & test5["004598"]
+    Patient -- has --> Insurance["Insurance"]
+    Insurance -- is --> HealthPlan["HealthGuard Assurance"]
+    HealthPlan -- describes --> Subscriber["Subscriber"] & Labcorp["Labcorp Payer Code"]
+    Subscriber -- is --> Sub_NO["JJAYG3mvQW99"]
+    Labcorp -- is --> Labcorp_Code["SPHSC"]
+    HealthPlan -- has --> Deductible["Deductible"] & Coinsurance["Coinsurance"] & Copay["Copay"] & OutPocket["Out-of-Pocket Remaining"]
+    Deductible -- is --> No["No"] & DeductibleValue["No"] & D01["0"] & D02["0"] & D03["0"] & D04["0"] & D05["0"] & D06["0"] & D07["0"] & D08["0"] & D09["0"] & D010["0"] & D011["0"]
+    Coinsurance -- is --> Percentage["15%"] & CoinsuranceValue["15%"] & C1["$16.41"] & C2["$14.99"] & C3["$17.76"] & C4["$12.70"] & C5["$13.20"] & C6["$10.46"] & C7["$13.03"] & C8["$15.00"] & C9["$-0.75"] & C10["$4.68"] & C11["$17.23"]
+    OutPocket -- is --> Yes["Yes"] & OutPocketValue["Yes"]
+    Insurance -- includes --> Deductible & Copay & Coinsurance & OutPocket
+    clinic["clinic"] -- issued --> Billings["billings"]
+    Totals["totals"] -- includes --> OFP["Your out-of-pocket Expenses"] & EST["Estimated Amount Paid by Health Plan"] & HAR["Health Plan Allowed Rate"]
+    OFP -- is --> OFP_Amount
+    EST -- is --> EST_Amount["$41.04"]
+    HAR -- is --> HAR_Amount["$184.69"]
+    Billings -- includes --> Totals & Billing_Code["Billing Code"] & Description["Description"] & AllowedRate["Health Plan Allowed Rate"] & Estimated["Estimated Amount Paid by Health Plan"] & Deductible & Coinsurance & Copay_amount["Copay"]
+    Billing_Code -- is --> Billing_Code1["85025"] & Billing_Code2["80053"] & Billing_Code3["82607"] & Billing_Code4["36415"] & Billing_Code5["82728"] & Billing_Code6["83550"] & Billing_Code7["83540"] & Billing_Code8["80061"] & Billing_Code9["83036"] & Billing_Code10["86803"] & Billing_Code11["Additional"]
+    Description -- is --> D1["CBC W/DIFF"] & D2["CMP"] & D3["VITAMIN B4H"] & D4["BLOOD DRAWING"] & D5["FERRITIN"] & D6["IRON BIND CAPACITY"] & D7["IRON"] & D8["LIPID PANEL"] & D9["HGB GLYCATED"] & D10["HEPATITIS C AB"] & D10
+    AllowedRate -- is --> R1["$18.25"] & R2["$15.21"] & R3["$20.10"] & R4["$18.23"] & R5["$15.64"] & R6["$16.41"] & R7["$15.96"] & R8["$15.81"] & R9["$8.99"] & R10["$8.04"] & R11["$20.51"]
+    Estimated -- is --> P1["$1.85"] & P2["$0.22"] & P3["$2.34"] & P4["$5.62"] & P5["$2.44"] & P6["$5.94"] & P7["$2.93"] & P8["$0.81"] & P9["$10.04"] & P10["$3.36"] & P11["$2.84"]
+    Copay_amount -- is --> C01["0"] & C02["0"] & C03["0"] & C04["0"] & C05["0"] & C06["0"] & C07["0"] & C08["0"] & C09["0"] & C010["0"] & C011["0"]
+    Billing_Code1 -- is --> D1
+    D1 -- is --> P1
+    P1 -- is --> D01
+    D01 -- is --> C1
+    C1 -- is --> C01 & C03 & C04
+    Billing_Code2 -- is --> D2
+    D2 -- is --> P2
+    P2 -- is --> D02
+    D02 -- is --> C2
+    C2 -- is --> C02
+    Billing_Code3 -- is --> D3
+    D3 -- is --> P3
+    P3 -- is --> D03
+    D03 -- is --> C1
+    Billing_Code4 -- is --> D4
+    D4 -- is --> P4
+    P4 -- is --> D04
+    D04 -- is --> C1
+    Billing_Code5 -- is --> D5
+    D5 -- is --> P5
+    P5 -- is --> D05
+    D05 -- is --> C5
+    C5 -- is --> C05
+    Billing_Code6 -- is --> D6
+    D6 -- is --> P6
+    P6 -- is --> D06
+    D06 -- is --> C6
+    C6 -- is --> C06
+    Billing_Code7 -- is --> D7
+    D7 -- is --> P7
+    P7 -- is --> D07
+    D07 -- is --> C7
+    C7 -- is --> C07
+    Billing_Code8 -- is --> D8
+    D8 -- is --> P8
+    P8 -- is --> D08
+    D08 -- is --> C8
+    C8 -- is --> C08
+    Billing_Code9 -- is --> D9
+    D9 -- is --> P9
+    P9 -- is --> D09
+    D09 -- is --> C9
+    C9 -- is --> C09
+    Billing_Code10 -- is --> D10
+    D10 -- is --> P10
+    P10 -- is --> D010
+    D010 -- is --> C10
+    C10 -- is --> C010
+    Billing_Code11 -- is --> D11["Additional billing codes"]
+    D11 -- is --> P11
+    P11 -- is --> D011
+    D011 -- is --> C11
+    C11 -- is --> C011

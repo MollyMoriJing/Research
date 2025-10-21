@@ -1,0 +1,34 @@
+---
+config:
+  layout: elk
+---
+flowchart TD
+    Bill["Bill 2"] -- is --> Date["11/29/2023"]
+    Bill -- has --> Patient["Isaiah Duke"]
+    Guarantor["Guadalupe Pruitt"] -- location/phone --> Guarantor_Location["621 Sunrise Dr, Cheyenne, WI 82009"]
+    Guarantor -- has --> Guarantorr_Phone["492999751"]
+    Guarantor -- Relationship --> Patient
+    Patient -- Patient Guarantor --> Guarantor
+    Patient -- owns --> Total["$1,994.90"]
+    Patient -- received --> Service["service"]
+    Total -- has --> Deadline["deadline"] & PaymentMethods["payment methods"]
+    Deadline -- is --> Deadline_Date["02/29/2024"]
+    Deadline -- includes --> MinimumDue["Minimun Amount Due"]
+    MinimumDue -- is --> Mini_Amount["$664.97"]
+    MinimumDue -- includes --> Deadline
+    PaymentMethods -- includes --> PayByMail["Pay by mail"] & Website["www.silverbirch.com"] & QR["QR code with smartphone"]
+    Hospital["Silver Birch Community Hospital"] -- describes --> PO["PO BOX 4048"] & Dept["Dept #LINAN"]
+    Hospital -- location/phone --> Hospital_Location["Clarksville, Tennessee-37092"]
+    Hospital -- has --> RevenueOffice["Revenue Roots Billing Office"] & Account["Account Number"]
+    Hospital -- Performed --> Service
+    RevenueOffice -- location/phone --> RevenueOffice_Add["1980 Timber Ln, Fargo, ND 58104"]
+    Account -- is --> Account_Number["439299751"]
+    Service -- costs --> Total
+    Service -- has --> PaymentOptions["payment options"] & HelpOptions["help options"]
+    PaymentOptions -- includes --> PayMonthly["Pay Monthly $664.97"] & PayFull["Pay In Full $1,994.90"]
+    PayMonthly -- includes --> ThreePayments["3 Payments"]
+    ThreePayments -- includes --> MonthlyFee["$4.95 monthly service fee per installment"]
+    HelpOptions -- includes --> FinancialAssist["Financial Assistance"] & CustomerService["Customer service"] & WebsiteHelp["www.silverbirch.com"]
+    FinancialAssist -- includes --> FinPhone["860-483-9278"] & FinWebsite["www.silverbirchfinance.com"]
+    CustomerService -- includes --> CustPhone["216-743-5068"]
+    CustPhone -- by --> Hours["8:00AM - 5:00PM PT"] & Days["Monday thru Friday"]
